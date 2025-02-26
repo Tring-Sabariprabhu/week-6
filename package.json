@@ -1,0 +1,15 @@
+{
+  "name": "week-6",
+  "version": "1.0.0",
+  "main": "createServ.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.3"
+  }
+}
