@@ -1,0 +1,8 @@
+.HomePage > .bottom_container > button{
+    color: rgb(12, 109, 139);
+    padding: 1% 1% 1% 0 ;
+    background-color: transparent;
+}
+.username{
+    white-space: pre;
+}

@@ -1,0 +1,96 @@
+
+.signup-form {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    min-width: 33vw;
+    /* margin: auto; */
+    margin: 4% 32%;
+    padding: 2% 3% 1% 3%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .signup_header{
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 0;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  .logo{
+    color: rgb(12, 109, 139);
+    font-size: 1.8vw;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+ #name_input{
+  
+ }
+  .signup_input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    /* border-radius: 5px; */
+    border-radius: 2%;
+    font-size: 16px;
+  }
+  
+  .signup_input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .error-input {
+    border-color: #ff4d4d;
+  }
+  
+  .error-message {
+    color: #ff4d4d;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .signup-button {
+    width: 100%;
+    padding: 10px;
+    /* background: #007bff;
+    color: white; */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .signup-button:hover {
+    /* background: #0056b3; */
+  }
+  
+  .OldAcc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8% 23%;
+    /* background-color: aqua; */
+  }
+  .OldAcc > .redirect_tag{
+    color: rgb(50, 50, 50);
+    font-size: 1.2vw;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+  }
+  
+  
