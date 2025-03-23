@@ -6,14 +6,9 @@
 }
 
 .EditPage{
-    /* background-color:   aquamarine; */
     height: 145vh;
-    
 }
 .EditPage > .Image_container{
-    /* background-image: url('./Images/Banner.png'); */
-   
-    /* background-size: cover; */
     background-repeat: no-repeat;
     
     background-size: cover;
@@ -28,7 +23,11 @@
     padding: 1.5% 2% ;
     display: flex;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.341);
+    background-color: rgba(0, 0, 0, 0.505);
+}
+.EditPage > .Image_container > .Input_Area > .Content{
+    display: flex;
+    flex-direction: column;
 }
 .EditPage > .Image_container > .Input_Area > .Content > .title{               /* Title of Input */
     font-size: 1.2vw;
@@ -77,7 +76,6 @@
     grid-template-columns: repeat(3, 1fr);
     padding: 1.5% 1.5% ;
     padding-bottom: 15%;
-    /* row-gap:1%; */
     column-gap: 3%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -85,11 +83,9 @@
     padding: 2% 0 5% 0;
     display: flex;
     flex-direction: column;
-    /* padding: 1% 0% ; */
     background-color: transparent;
     min-width: 29vw;
     min-height: 40vh;
-    /* max-height: 55vh; */
 }
 .Input_container > .Input > label{
     color: rgba(51, 51, 51, 0.816);
@@ -119,9 +115,7 @@
 }
 .ql-toolbar {
     background: #f9f9f9;
-    /* border-radius: 8px 8px 0 0; */
     display: none;
-    /* visibility: hidden; */
 }
 .ql-container {
     border: 1px solid #ccc !important;
@@ -130,7 +124,6 @@
 }
 .react_quill:focus-within .ql-toolbar {
     display: block;
-    /* visibility: visible; */
   }
   
   
@@ -145,12 +138,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* border-top: 0.0001vw solid gray; */
     width: 100%;
 }
 .Buttons_container > .LeftSide{
     display: flex;
-    /* background-color: aqua; */
     width: 50%;
 }
 .Buttons_container > .LeftSide > button{    
@@ -167,9 +158,6 @@
     width: 50%;
     display: flex;
     justify-content: end;
-    /* justify-content: space-between; */
-    /* justify-content: end; */
-    /* background-color: aqua; */
 }
 .Buttons_container > .RightSide > button{
     font-size: 1.2vw;
@@ -187,40 +175,14 @@
     color: rgb(81, 78, 78);
 }
 
-/*
-
-.Buttons_container > .RightSide{
-    padding: 0 6%;
-    background-color: aqua;
-}
-
-.Buttons_container > .RightSide > button , .Buttons_container > .LeftSide > button{
-    
-    font-size: 1.2vw;
-    background-color: white;
-    padding: 10% 15%;
-    border: none;
-    margin-right: 20%;
-    font-weight: 700;
-}
-.Buttons_container > .LeftSide > button{
-    text-transform: uppercase;
-    background-color: transparent;
-    color: red;
-} */
 
 .Popup{
-    z-index: 1;
     padding: 1% 1% 1.5% 1%;
-    /* margin: 10%; */
-    /* width: 100%;
-    height: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 30vw;
-    /* height: 55vh; */
     position: fixed;
     top: 25%;
     left: 34%;
@@ -231,18 +193,12 @@
     transition: 0.8s ;
 }
 
-/* .Popup > button{
-    width: 5vw;
-} */
 .Popup > .close_button{
     color: rgba(0, 0, 0, 0.655);
-    /* font-size: 1.5vw; */
     margin-left: 95%;
     cursor: pointer;
     font-family: sans-serif;
     background-color: rgba(0, 0, 0, 0.146);
-    /* padding: 0.5% 2% 1% 2%; */
-    /* padding: 0.1% 1.5% 0.5% 1.5%; */
     padding: 0 1.5%;
     font-size: 1.2vw;
     border-radius: 50%;
@@ -253,8 +209,6 @@
     background-size: 80%;
     width: 100%;
     height: 30vh;
-    
-    /* background-color: transparent; */
 }
 .Popup > input{
     
@@ -269,8 +223,7 @@
     box-shadow: none;
 }
 .Popup > .Buttons_container > .RightSide{
-    /* padding: 0 3%; */
-    /* background-color: aqua; */
+
     width: 30%;
 }
 
@@ -295,14 +248,8 @@
     
 }
 .Delete_Popup > .Buttons_container {
-    /* all: unset !important; */
     justify-content: end !important;
-    /* padding: 0 20%; */
-    /* margin: 3% 10% 0 0; */
 }
-
-
-
 
 .error_msg{
     color: red;
@@ -315,7 +262,6 @@
     padding: 1.5% 2%;
     margin-top: 2%;
     margin-right: 3%;
-    /* text-transform: uppercase; */
     background-color: rgba(0, 128, 6, 0.64);
     color: white;
     border: none;

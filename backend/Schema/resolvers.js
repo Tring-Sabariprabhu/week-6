@@ -1,18 +1,9 @@
 
-import { executionAsyncResource } from 'async_hooks';
-import db from '../dbconnect.js';
-
-
+import db from '../dbconnect.js'
 export const resolvers = {
     Query:{
-        getAllUsers: async () =>{
-            const users = await db.query("SELECT * FROM users");
-            // console.log(users.rows);
-            return users.rows;
-        },
         getUser: async (_, {email}) =>{
             const user = await db.query(`SELECT * FROM users WHERE email = $1` ,[email] );
-            // console.log(user.rows);
             return user.rows[0];
         },
         
@@ -20,18 +11,14 @@ export const resolvers = {
             const message = await db.query(`SELECT checkValidUser($1) AS valid`,[email]);
             return message.rows[0].valid;
         },
-        personaValidQuery: async (_, {email, id})=>{
+        personaValid: async (_, {email, id})=>{
             const message = await db.query(`SELECT checkValidPersona($1, $2) AS valid`,[email, id]);
             return message.rows[0].valid;
         },
-        getPersonaCount: async (_, {email})=>{
-            const message = await db.query(`SELECT getPersonaCount($1) AS count`, [email]);
-            return message.rows[0].count;
-        }
+        
       
     },
     user:{
-        
         personas: async (parent)=>{
             const personas = await db.query(`SELECT * FROM persona WHERE useremail = $1 ORDER BY id`, [parent.email]);
             return personas.rows || [];
@@ -66,20 +53,16 @@ export const resolvers = {
                 return `Upadtion failed ${err}`;
             }
         },
-        setPersonaCount: async (_, {email, count})=>{
-            const message = await db.query("SELECT setPersonaCount($1,$2)",[email, count]);
-            return message.rows[0];
-        },
+       
         insertPersona: async (_, {email, name, image, quote, description, attitudes, painpoints, jobs, activities})=>{
             try{
                 const userValid = await resolvers.Query.userIsPresent(_, { email });
                 if(userValid){
-                    let prev_personaCount = await resolvers.Query.getPersonaCount(_, {email});
-                    const curr_count = prev_personaCount + 1;
+                    let prev_personaCount = await db.query(`SELECT getPersonaCount($1) AS count`, [email]);
+                    const curr_count = prev_personaCount.rows[0].count + 1;
                     await db.query(`INSERT INTO persona(id, useremail, name, image, quote, description, attitudes, painpoints, jobs, activities) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)`,
                                                        [ curr_count, email, name, image, quote, description, attitudes, painpoints, jobs, activities]);
-                    const message =  await resolvers.Mutation.setPersonaCount(_, {email, count: curr_count});
-                    console.log(message);
+                    await db.query("SELECT setPersonaCount($1,$2)",[email, curr_count]);
                     return `Persona details Inserted Successfully , Persona ID : ${curr_count}`;
                 }
                 else{
@@ -96,7 +79,7 @@ export const resolvers = {
                     if(!userValid){
                         throw new Error('User Invalid');
                     }
-                    const personaValid = await resolvers.Query.personaValidQuery(_, {email, id});
+                    const personaValid = await resolvers.Query.personaValid(_, {email, id});
                     if(!personaValid){
                         throw new Error('Persona Id Invalid');
                     }
@@ -117,7 +100,7 @@ export const resolvers = {
                     if(!userValid){
                         throw new Error('User Invalid');
                     }
-                    const personaValid = await resolvers.Query.personaValidQuery(_, {email, id});
+                    const personaValid = await resolvers.Query.personaValid(_, {email, id});
                     if(!personaValid){
                         throw new Error('Persona Id Invalid');
                     }

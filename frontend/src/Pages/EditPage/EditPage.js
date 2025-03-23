@@ -1,26 +1,23 @@
 import './EditPage.css';
 
 import { useLocation, useNavigate} from 'react-router-dom';
-import DefaultImage from './Images/Banner.png';
+import DefaultImage from '../../Images/Banner.png';
 import { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { UserContext } from './Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { makeToast } from './Toast/MakeToast';
+import { makeToast } from '../../Toast/MakeToast';
 
 
 export const EditPage=()=>{
     const navigate = useNavigate();
 
     const location = useLocation();
- 
-    // const editPersonaKey = URLStatus.key == undefined ? undefined : Number.parseInt(URLStatus.key);      // Saving Persona key from the URL
     
     const editPersonaKey = location?.state ? location?.state?.index : undefined;
-    const [ EditStatus, setEditStatus] = useState(false);                   // It declares Whether this page for Creation or Editing
-    
+    const [ EditStatus, setEditStatus] = useState(false);                 // It declares Whether this page for Creation or Editing
     
     const { user, personas, setEditedPersona, personaAdding,  personaDeletion } = useContext(UserContext);
     
@@ -33,21 +30,17 @@ export const EditPage=()=>{
     const [ DeleteCardState, setDeleteCardState] = useState(false);  // For Delete Card popup
 
     const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
-        defaultValues: { name: null, image: null, quote: null, description: null, attitudes: null, painpoints: null, jobs: null, activities: null},
-        mode: "onChange"
+        defaultValues: { name: null, image: null, quote: null, description: null, attitudes: null, painpoints: null, jobs: null, activities: null}
     });
 
     
     useEffect( ()=>{
-    
-        // console.log("UseEffect Running..")
         if(user?.name == null){
             navigate('/');
         }
         else if(editPersonaKey === undefined){      // Create Persona 
             setEditStatus(false);
         }
-      
         else{                                       // Editing Persona 
             setEditStatus(true);                   
             const Prev_data = personas.find(persona=> persona.id === editPersonaKey);   // Fetching Previous persona data   
@@ -60,7 +53,6 @@ export const EditPage=()=>{
                 setSavedImage(Prev_data.image);
             }    
         }
-       
     }, []);
 
 
@@ -72,9 +64,6 @@ export const EditPage=()=>{
         <div className='Popup Delete_Popup'>
             <p>Do you want to Delete</p>
             <div className='Buttons_container'>
-                    <div className='LeftSide'>
-
-                    </div>
                     <div className='RightSide'>
                         <button type='button' className='Btn1' onClick={()=>setDeleteCardState(false)}>Cancel</button>
                         <button type='button'  className='button_color' onClick={()=>DeleteCard()}>Confirm</button>
@@ -107,7 +96,6 @@ export const EditPage=()=>{
                                 >Delete</button>
                     </div>
                     <div className='RightSide'>
-                        {/* <button type='button' onClick={()=>SetEditImgPopup(false)} className='Btn1'>Cancel</button> */}
                         <button type='button' onClick={()=>AfterClickSave() } className='button_color'>Save</button>
                     </div>
                 </div>
@@ -119,7 +107,7 @@ export const EditPage=()=>{
    
         if(SavedImage){
             setSavedImage(null);
-            setImageSelected(null);   // Optional
+            setImageSelected(null);   
             setEditImageState(false);            
             makeToast('Image Deleted', 'success');
         }
@@ -146,7 +134,6 @@ export const EditPage=()=>{
             const reader = new FileReader();
             reader.readAsDataURL(event?.target?.files[0]);
             reader.onloadend = ()=> setImageSelected(reader.result);
-            // setImageSelected(URL.createObjectURL(event?.target?.files[0]));   // Store Selected Image Temporary
         }
         
     }
@@ -225,7 +212,6 @@ export const EditPage=()=>{
                                 className="personaName"
                                 name='name'
                                 placeholder="Sample"
-                                
                                 {...register("name", 
                                     {                             
                                         validate: {
@@ -240,13 +226,8 @@ export const EditPage=()=>{
                                   
                                 })} 
                                 value={watch("name") || ""}
-                                // onChange={handleChange}
-                                
-                                
                                 />
-                            {errors.name && <span className='error_msg'>{errors.name.message}</span>} 
-                       
-                        
+                    {errors.name && <span className='error_msg'>{errors.name.message}</span>} 
                     </div>
                     <button type='button' className='editImageBtn' onClick={()=>SetEditImgPopup(true)}>
                         {SavedImage ? "Edit Image" : "Upload Image"}

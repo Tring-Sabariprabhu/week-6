@@ -6,7 +6,7 @@ import { useLazyQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 import { makeToast } from "../Toast/MakeToast";
 
@@ -14,13 +14,12 @@ import { makeToast } from "../Toast/MakeToast";
 function SignupForm() {
   const navigate = useNavigate();
   const {  setUserDetails } = useContext(UserContext);  
-  const { register,  handleSubmit, watch, formState: { errors } } = useForm({ mode: "onChange"});
+  const { register,  handleSubmit, watch, formState: { errors } } = useForm();
   
   const Check_User_present = gql`
     query checkEmailExists($email: String!){
       userIsPresent(email: $email)
     }
-    
     `
     const Register = gql`
     mutation registerUser($email: String!, $name: String!, $password: String!){
@@ -28,8 +27,8 @@ function SignupForm() {
     }
     `  
     
-    const [checkEmailExists, { loading: checkLoading, error: checkError}] = useLazyQuery(Check_User_present, {fetchPolicy: "network-only"});
-    const [registerUser, { loading: registerLoading, error: registerError}] = useMutation(Register);
+    const [checkEmailExists] = useLazyQuery(Check_User_present, {fetchPolicy: "network-only"});
+    const [registerUser] = useMutation(Register);
    
 
     const onSubmit = async (formdata) => {
@@ -132,10 +131,10 @@ function SignupForm() {
       </div>
 
       <button type="submit" className="signup-button button_color">Register</button>
-      <div className="OldAcc">
+      <footer>
             <p>Have an Account?</p>
             <Link to="/login" className="redirect_tag" >Login</Link>
-      </div>
+      </footer>
     </form>
   );
 }

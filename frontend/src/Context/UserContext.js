@@ -11,7 +11,6 @@ export const UserProvider = ({ children }) => {
   const UserDetails = gql`
         query getUserDetails($email: String!){
           getUser(email: $email){
-    
             personas{
               id,
               name,
@@ -51,8 +50,7 @@ export const UserProvider = ({ children }) => {
   useEffect(()=>{
     
     if(user?.email){
-      console.log("user context useEffect running")
-      storeAllPersonasToContext()
+      storeAllPersonasToContext();
     }
   },[user]);
   
@@ -65,8 +63,7 @@ export const UserProvider = ({ children }) => {
       const personas = Object.values(result.getUser.personas);
       setPersonas(personas)
     }
-  
-    }
+  }
  
   const personaDeletion = async (persona_id) => {
     if(user.email){
@@ -77,7 +74,7 @@ export const UserProvider = ({ children }) => {
         storeAllPersonasToContext()
       }
       else{
-        makeToast("error occurr", 'error')
+        makeToast("Error occurred", 'error')
       }
       
     }
@@ -91,10 +88,8 @@ export const UserProvider = ({ children }) => {
         storeAllPersonasToContext()
       }
       else{
-        makeToast("error occurr", 'error')
-      }
-      
-      
+        makeToast("Error occurred", 'error')
+      }    
     }
   };
   const setEditedPersona = async (persona_id, data)=>{
@@ -107,7 +102,7 @@ export const UserProvider = ({ children }) => {
         storeAllPersonasToContext();
       }
       else{
-        makeToast("error occurr", 'error')
+        makeToast("Error occurred", 'error')
       }
       
       

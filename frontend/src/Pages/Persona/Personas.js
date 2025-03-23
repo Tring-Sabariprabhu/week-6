@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import tringapps from './Images/tringapps.svg';
 import './Personas.css';
 import { useContext, useEffect } from 'react';
-import { UserContext } from './Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 
 export const Personas=()=>{
     const navigate = useNavigate();

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import "./LoginForm.css"; // Import the CSS file
-import { gql, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import { useLazyQuery } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 import { makeToast } from "../Toast/MakeToast";
 
@@ -32,7 +32,7 @@ function LoginForm() {
       handleSubmit,
       formState: { errors },
       
-    } = useForm({ mode: "onChange"});
+    } = useForm();
 
   const [checkEmailExists] = useLazyQuery(Check_User_present, {fetchPolicy: "network-only"});
   const [getUser] = useLazyQuery(UserDetails);
@@ -47,8 +47,7 @@ function LoginForm() {
       {
         const {  data: getUserData } = await getUser({variables: {email: formdata.email}});
         if(formdata?.password === getUserData?.getUser?.password){
-          makeToast("Logged In Successfully", 'success');
-          //store in userContext
+          makeToast("Logged In Successfully", 'success');  //store in userContext
           setUserDetails({name: getUserData.getUser.name, email: formdata.email});
           navigate('/persona');
         }
@@ -60,7 +59,6 @@ function LoginForm() {
           makeToast("Email not registered Go to Register", 'info');
         }
         
-
   };
 
   return (
@@ -105,10 +103,10 @@ function LoginForm() {
       </div>
 
       <button type="submit" className="login-button button_color">Login</button>
-      <div className="NewAcc">
+      <footer>
             <p>Don't have an Account?</p>
             <Link to="/register" className="redirect_tag" >Register</Link>
-      </div>
+      </footer>
     </form>
   );
 }

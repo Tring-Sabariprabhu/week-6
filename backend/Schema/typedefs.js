@@ -1,4 +1,4 @@
-export const typeDefs = `#graphql
+export const typeDefs = `
 type user{
     email: String
     name: String
@@ -21,7 +21,7 @@ type Query{
     getAllUsers: [user!]
     getUser(email: String!): user
     userIsPresent (email: String!): Boolean
-    personaValidQuery (email: String!, id: Int!): Boolean
+    personaValid (email: String!, id: Int!): Boolean
     getPersonaCount (email: String!): Int
 }
 type Mutation{

@@ -4,9 +4,6 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 
 import { typeDefs } from './Schema/typedefs.js';
 import { resolvers} from './Schema/resolvers.js'
-
-
-
 const server = new ApolloServer({
     typeDefs,
     resolvers

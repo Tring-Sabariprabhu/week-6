@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import './Personas.css';
+import '../Persona/Personas.css';
 import './Home.css';
-import { UserContext } from './Context/UserContext';
+import { UserContext } from '../../Context/UserContext';
 import { useContext } from 'react';
-import { makeToast } from './Toast/MakeToast';
+import { makeToast } from '../../Toast/MakeToast';
 
 export const Home=()=>{
     const navigate = useNavigate();

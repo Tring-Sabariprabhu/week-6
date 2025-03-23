@@ -4,11 +4,10 @@
     min-width: 30vw;
     min-height: 60vh;
     margin: 10% 35%;
-    padding: 20px;
+    padding: 20px 40px;
     background: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    text-align: center;
   }
   .login_header{
     display: flex;
@@ -65,15 +64,13 @@
     font-size: 16px;
     cursor: pointer;
   }
-  .NewAcc{
+  .login-form > footer{
     font-size: 1.2vw;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 8% 10%;
-    /* background-color: aqua; */
+    gap: 10px;
+    padding: 20px;
   }
-  .NewAcc > .redirect_tag{
+  .login-form > footer > .redirect_tag{
     color: rgb(50, 50, 50);
     font-size: 1.3vw;
     cursor: pointer;
